@@ -22,8 +22,45 @@ export default function About() {
         .fade3 { animation: fadeUp 0.8s 0.6s cubic-bezier(0.16,1,0.3,1) both; }
         .fade4 { animation: fadeUp 0.8s 0.8s cubic-bezier(0.16,1,0.3,1) both; }
         .fade5 { animation: fadeUp 0.8s 1s cubic-bezier(0.16,1,0.3,1) both; }
-        .work-card:hover { border-color: rgba(0,200,150,0.4) !important; transform: translateY(-4px); }
-        .award-card:hover { border-color: rgba(0,200,150,0.4) !important; background: rgba(0,200,150,0.05) !important; }
+        .work-card { transition: all 0.3s; }
+        .work-card:hover { border-color:rgba(0,200,150,0.4) !important; transform:translateY(-4px); }
+        .award-card { transition: all 0.3s; }
+        .award-card:hover { border-color:rgba(0,200,150,0.4) !important; background:rgba(0,200,150,0.05) !important; }
+
+        .intro-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 60px;
+          align-items: center;
+          margin-bottom: 80px;
+        }
+        .edu-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 24px;
+        }
+        .awards-grid {
+          display: grid;
+          grid-template-columns: repeat(3,1fr);
+          gap: 16px;
+        }
+        @media (max-width: 768px) {
+          .intro-grid {
+            grid-template-columns: 1fr !important;
+            gap: 32px !important;
+          }
+          .edu-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .awards-grid {
+            grid-template-columns: 1fr 1fr !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .awards-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
       `}</style>
 
       {/* Background */}
@@ -38,7 +75,7 @@ export default function About() {
 
       <main style={{ position:'relative', zIndex:1, padding:'120px 5% 80px', maxWidth:'1200px', margin:'0 auto' }}>
 
-        {/* Page Tag */}
+        {/* Tag */}
         <div className="fade1" style={{
           display:'inline-flex', alignItems:'center', gap:'8px',
           padding:'6px 14px',
@@ -55,29 +92,25 @@ export default function About() {
         {/* Heading */}
         <h1 className="fade2" style={{
           fontFamily:'Syne, sans-serif', fontWeight:800,
-          fontSize:'clamp(36px,5vw,64px)',
+          fontSize:'clamp(32px,5vw,64px)',
           lineHeight:1.0, letterSpacing:'-0.03em',
           marginBottom:'60px',
         }}>
           Meet the <span style={{ color:'#00C896' }}>Founder</span>
         </h1>
 
-        {/* Intro Section */}
-        <div className="fade3" style={{
-          display:'grid', gridTemplateColumns:'1fr 1fr',
-          gap:'60px', alignItems:'center', marginBottom:'80px',
-        }}>
-          {/* Left — Avatar Card */}
+        {/* Intro */}
+        <div className="fade3 intro-grid">
+          {/* Avatar Card */}
           <div style={{
             background:'#0C1217',
             border:'1px solid rgba(0,200,150,0.2)',
             borderRadius:'24px', padding:'40px',
-            display:'flex', flexDirection:'column', alignItems:'center',
-            gap:'20px', textAlign:'center',
+            display:'flex', flexDirection:'column',
+            alignItems:'center', gap:'20px', textAlign:'center',
           }}>
             <div style={{
-              width:'100px', height:'100px',
-              borderRadius:'24px',
+              width:'100px', height:'100px', borderRadius:'24px',
               background:'rgba(0,200,150,0.08)',
               border:'2px solid rgba(0,200,150,0.35)',
               display:'flex', alignItems:'center', justifyContent:'center',
@@ -112,7 +145,7 @@ export default function About() {
             </div>
           </div>
 
-          {/* Right — Bio */}
+          {/* Bio */}
           <div>
             <h2 style={{ fontFamily:'Syne,sans-serif', fontWeight:700, fontSize:'24px', color:'#F0F8F5', marginBottom:'16px' }}>
               The Way I Work
@@ -131,7 +164,13 @@ export default function About() {
                 'Team & Collaboration Friendly',
               ].map(item => (
                 <div key={item} style={{ display:'flex', alignItems:'center', gap:'12px' }}>
-                  <div style={{ width:'20px', height:'20px', borderRadius:'50%', background:'rgba(0,200,150,0.15)', border:'1px solid rgba(0,200,150,0.35)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
+                  <div style={{
+                    width:'20px', height:'20px', borderRadius:'50%',
+                    background:'rgba(0,200,150,0.15)',
+                    border:'1px solid rgba(0,200,150,0.35)',
+                    display:'flex', alignItems:'center', justifyContent:'center',
+                    flexShrink:0,
+                  }}>
                     <span style={{ color:'#00C896', fontSize:'11px' }}>✓</span>
                   </div>
                   <span style={{ fontSize:'14px', color:'rgba(240,248,245,0.7)' }}>{item}</span>
@@ -141,15 +180,15 @@ export default function About() {
           </div>
         </div>
 
-        {/* Education & Experience */}
+        {/* Education */}
         <div className="fade4" style={{ marginBottom:'80px' }}>
           <h2 style={{ fontFamily:'Syne,sans-serif', fontWeight:700, fontSize:'32px', color:'#F0F8F5', marginBottom:'40px' }}>
             Education & <span style={{ color:'#00C896' }}>Experience</span>
           </h2>
-          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'24px' }}>
+          <div className="edu-grid">
             {[
               { icon:'🎓', title:'BS Software Engineering', sub:'IISAT University, Gujranwala', tag:'Continue', type:'Education' },
-              { icon:'🎓', title:'DAE Computer IT', sub:'Christian Technical Training Centre, Gujranwala', tag:'Completed', type:'Education' },
+              { icon:'🎓', title:'DAE Computer IT', sub:'Christian Technical Training Centre', tag:'Completed', type:'Education' },
               { icon:'💼', title:'Branding + Social Media', sub:'Creative Computers', tag:'Work', type:'Experience' },
               { icon:'💼', title:'Software Developer', sub:'Christian Technical Training Centre', tag:'Work', type:'Experience' },
             ].map(item => (
@@ -157,17 +196,16 @@ export default function About() {
                 background:'#0C1217',
                 border:'1px solid rgba(0,200,150,0.12)',
                 borderRadius:'16px', padding:'24px',
-                transition:'all 0.3s', cursor:'default',
+                cursor:'default',
               }}>
                 <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', marginBottom:'12px' }}>
                   <span style={{ fontSize:'24px' }}>{item.icon}</span>
                   <span style={{
                     padding:'4px 10px',
                     background: item.type === 'Education' ? 'rgba(0,200,150,0.08)' : 'rgba(255,184,0,0.08)',
-                    border: `1px solid ${item.type === 'Education' ? 'rgba(0,200,150,0.2)' : 'rgba(255,184,0,0.2)'}`,
+                    border:`1px solid ${item.type === 'Education' ? 'rgba(0,200,150,0.2)' : 'rgba(255,184,0,0.2)'}`,
                     borderRadius:'99px', fontSize:'10px',
                     color: item.type === 'Education' ? '#00C896' : '#FFB800',
-                    letterSpacing:'0.06em',
                   }}>{item.tag}</span>
                 </div>
                 <div style={{ fontFamily:'Syne,sans-serif', fontWeight:600, fontSize:'15px', color:'#F0F8F5', marginBottom:'6px' }}>{item.title}</div>
@@ -182,7 +220,7 @@ export default function About() {
           <h2 style={{ fontFamily:'Syne,sans-serif', fontWeight:700, fontSize:'32px', color:'#F0F8F5', marginBottom:'40px' }}>
             Awards & <span style={{ color:'#00C896' }}>Achievements</span>
           </h2>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'16px' }}>
+          <div className="awards-grid">
             {[
               { icon:'🏆', title:'Final Year Project Winner', sub:'CTTC Expo' },
               { icon:'⭐', title:'Best Media Member Award', sub:'Christian Technical Training Centre' },
@@ -194,7 +232,7 @@ export default function About() {
                 background:'#0C1217',
                 border:'1px solid rgba(0,200,150,0.12)',
                 borderRadius:'16px', padding:'20px',
-                transition:'all 0.3s', cursor:'default',
+                cursor:'default',
               }}>
                 <div style={{ fontSize:'28px', marginBottom:'10px' }}>{award.icon}</div>
                 <div style={{ fontFamily:'Syne,sans-serif', fontWeight:600, fontSize:'13px', color:'#F0F8F5', marginBottom:'4px' }}>{award.title}</div>

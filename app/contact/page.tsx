@@ -2,12 +2,7 @@
 import { useState } from 'react'
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    service: '',
-    message: '',
-  })
+  const [formData, setFormData] = useState({ name:'', email:'', service:'', message:'' })
   const [submitted, setSubmitted] = useState(false)
 
   const handleSubmit = (e: React.MouseEvent) => {
@@ -40,47 +35,41 @@ export default function Contact() {
         .fade1 { animation: fadeUp 0.8s 0.2s cubic-bezier(0.16,1,0.3,1) both; }
         .fade2 { animation: fadeUp 0.8s 0.4s cubic-bezier(0.16,1,0.3,1) both; }
         .fade3 { animation: fadeUp 0.8s 0.6s cubic-bezier(0.16,1,0.3,1) both; }
+        .check-anim { animation: checkPop 0.5s cubic-bezier(0.16,1,0.3,1) both; }
+        .info-card { transition: all 0.3s; }
+        .info-card:hover { border-color:rgba(0,200,150,0.35) !important; transform:translateY(-3px); }
+        .submit-btn:hover { background:#00A077 !important; box-shadow:0 0 40px rgba(0,200,150,0.4); transform:translateY(-2px); }
+        .contact-grid {
+          display: grid;
+          grid-template-columns: 1fr 1.5fr;
+          gap: 40px;
+          margin-bottom: 60px;
+        }
         .contact-input {
           width:100%; padding:14px 16px;
-          background: rgba(0,200,150,0.04);
-          border: 1px solid rgba(0,200,150,0.15);
-          borderRadius: 10px;
-          color: #F0F8F5;
-          fontSize: 14px;
-          outline: none;
-          transition: all 0.3s;
-          fontFamily: 'DM Sans', sans-serif;
+          background:rgba(0,200,150,0.04);
+          border:1px solid rgba(0,200,150,0.15);
+          border-radius:10px;
+          color:#F0F8F5; font-size:14px;
+          outline:none; transition:all 0.3s;
+          font-family:'DM Sans',sans-serif;
         }
         .contact-input:focus {
-          border-color: rgba(0,200,150,0.5) !important;
-          background: rgba(0,200,150,0.08) !important;
-          box-shadow: 0 0 0 3px rgba(0,200,150,0.08);
+          border-color:rgba(0,200,150,0.5) !important;
+          background:rgba(0,200,150,0.08) !important;
+          box-shadow:0 0 0 3px rgba(0,200,150,0.08);
         }
-        .contact-input::placeholder { color: rgba(240,248,245,0.25); }
-        .info-card:hover {
-          border-color: rgba(0,200,150,0.35) !important;
-          transform: translateY(-3px);
+        .contact-input::placeholder { color:rgba(240,248,245,0.25); }
+        @media (max-width: 768px) {
+          .contact-grid {
+            grid-template-columns: 1fr !important;
+          }
         }
-        .submit-btn:hover {
-          background: #00A077 !important;
-          box-shadow: 0 0 40px rgba(0,200,150,0.4);
-          transform: translateY(-2px);
-        }
-        .social-btn:hover {
-          border-color: rgba(0,200,150,0.4) !important;
-          background: rgba(0,200,150,0.08) !important;
-          color: #00C896 !important;
-        }
-        .check-anim { animation: checkPop 0.5s cubic-bezier(0.16,1,0.3,1) both; }
       `}</style>
 
       {/* Background */}
       <div style={{ position:'fixed', inset:0, zIndex:0, overflow:'hidden', pointerEvents:'none' }}>
-        <div style={{
-          position:'absolute', inset:0,
-          backgroundImage:'linear-gradient(rgba(0,200,150,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,150,0.04) 1px,transparent 1px)',
-          backgroundSize:'60px 60px',
-        }}/>
+        <div style={{ position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(0,200,150,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,150,0.04) 1px,transparent 1px)', backgroundSize:'60px 60px' }}/>
         <div style={{ position:'absolute', width:'500px', height:'500px', top:'-100px', left:'-100px', background:'radial-gradient(circle,rgba(0,200,150,0.12),transparent 70%)', filter:'blur(100px)', animation:'orbFloat 12s ease-in-out infinite' }}/>
         <div style={{ position:'absolute', width:'400px', height:'400px', bottom:0, right:'-100px', background:'radial-gradient(circle,rgba(0,160,119,0.1),transparent 70%)', filter:'blur(100px)', animation:'orbFloat 12s ease-in-out -4s infinite' }}/>
       </div>
@@ -90,12 +79,10 @@ export default function Contact() {
         {/* Tag */}
         <div className="fade1" style={{
           display:'inline-flex', alignItems:'center', gap:'8px',
-          padding:'6px 14px',
-          border:'1px solid rgba(0,200,150,0.35)',
+          padding:'6px 14px', border:'1px solid rgba(0,200,150,0.35)',
           borderRadius:'99px', fontSize:'11px', color:'#00C896',
           letterSpacing:'0.1em', textTransform:'uppercase',
-          fontWeight:500, marginBottom:'20px',
-          background:'rgba(0,200,150,0.08)',
+          fontWeight:500, marginBottom:'20px', background:'rgba(0,200,150,0.08)',
         }}>
           <span style={{ width:'6px', height:'6px', background:'#00C896', borderRadius:'50%', animation:'blink 1.5s ease-in-out infinite', display:'inline-block' }}/>
           Get In Touch
@@ -104,9 +91,8 @@ export default function Contact() {
         {/* Heading */}
         <h1 className="fade2" style={{
           fontFamily:'Syne, sans-serif', fontWeight:800,
-          fontSize:'clamp(36px,5vw,64px)',
-          lineHeight:1.0, letterSpacing:'-0.03em',
-          marginBottom:'16px',
+          fontSize:'clamp(32px,5vw,64px)',
+          lineHeight:1.0, letterSpacing:'-0.03em', marginBottom:'16px',
         }}>
           Let&apos;s Build Something <span style={{ color:'#00C896' }}>Great</span>
         </h1>
@@ -119,16 +105,11 @@ export default function Contact() {
           Have a project in mind? Let&apos;s talk! I respond within 24 hours.
         </p>
 
-        {/* Main Grid */}
-        <div className="fade3" style={{
-          display:'grid', gridTemplateColumns:'1fr 1.5fr',
-          gap:'40px', marginBottom:'60px',
-        }}>
+        {/* Grid */}
+        <div className="fade3 contact-grid">
 
-          {/* Left — Contact Info */}
+          {/* Left */}
           <div style={{ display:'flex', flexDirection:'column', gap:'16px' }}>
-
-            {/* Info Cards */}
             {[
               { icon:'📞', label:'Phone', value:'0322-6475148', href:'tel:+923226475148' },
               { icon:'✉️', label:'Email', value:'hash1developers.official@gmail.com', href:'mailto:hash1developers.official@gmail.com' },
@@ -139,7 +120,6 @@ export default function Contact() {
                 padding:'20px', background:'#0C1217',
                 border:'1px solid rgba(0,200,150,0.12)',
                 borderRadius:'16px', textDecoration:'none',
-                transition:'all 0.3s',
               }}>
                 <div style={{
                   width:'44px', height:'44px', borderRadius:'12px',
@@ -155,7 +135,6 @@ export default function Contact() {
               </a>
             ))}
 
-            {/* WhatsApp Button */}
             <a href="https://wa.me/923226475148" target="_blank" style={{
               display:'flex', alignItems:'center', justifyContent:'center', gap:'10px',
               padding:'16px',
@@ -163,8 +142,7 @@ export default function Contact() {
               border:'1px solid rgba(37,211,102,0.3)',
               borderRadius:'16px', textDecoration:'none',
               color:'#25D366', fontFamily:'Syne,sans-serif',
-              fontWeight:700, fontSize:'14px',
-              transition:'all 0.3s',
+              fontWeight:700, fontSize:'14px', transition:'all 0.3s',
             }}
               onMouseEnter={e => e.currentTarget.style.background = 'rgba(37,211,102,0.2)'}
               onMouseLeave={e => e.currentTarget.style.background = 'rgba(37,211,102,0.1)'}
@@ -173,22 +151,23 @@ export default function Contact() {
               Message on WhatsApp
             </a>
 
-            {/* Social Links */}
             <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'8px' }}>
               {[
                 { label:'Facebook', icon:'f', href:'#' },
                 { label:'TikTok', icon:'♪', href:'#' },
                 { label:'YouTube', icon:'▶', href:'#' },
               ].map(s => (
-                <a key={s.label} href={s.href} className="social-btn" style={{
+                <a key={s.label} href={s.href} style={{
                   display:'flex', flexDirection:'column', alignItems:'center', gap:'4px',
-                  padding:'12px 8px',
-                  background:'#0C1217',
+                  padding:'12px 8px', background:'#0C1217',
                   border:'1px solid rgba(0,200,150,0.12)',
                   borderRadius:'12px', textDecoration:'none',
                   color:'rgba(240,248,245,0.4)', fontSize:'11px',
                   transition:'all 0.3s',
-                }}>
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(0,200,150,0.4)'; e.currentTarget.style.color = '#00C896' }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(0,200,150,0.12)'; e.currentTarget.style.color = 'rgba(240,248,245,0.4)' }}
+                >
                   <span style={{ fontSize:'16px' }}>{s.icon}</span>
                   <span>{s.label}</span>
                 </a>
@@ -203,13 +182,11 @@ export default function Contact() {
             borderRadius:'24px', padding:'36px',
           }}>
             {submitted ? (
-              <div style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', height:'100%', gap:'16px', textAlign:'center' }}>
+              <div style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', height:'100%', gap:'16px', textAlign:'center', minHeight:'400px' }}>
                 <div className="check-anim" style={{
                   width:'70px', height:'70px', borderRadius:'50%',
-                  background:'rgba(0,200,150,0.1)',
-                  border:'2px solid #00C896',
-                  display:'flex', alignItems:'center', justifyContent:'center',
-                  fontSize:'30px',
+                  background:'rgba(0,200,150,0.1)', border:'2px solid #00C896',
+                  display:'flex', alignItems:'center', justifyContent:'center', fontSize:'30px',
                 }}>✓</div>
                 <h3 style={{ fontFamily:'Syne,sans-serif', fontWeight:700, fontSize:'22px', color:'#F0F8F5' }}>Message Sent!</h3>
                 <p style={{ fontSize:'14px', color:'rgba(240,248,245,0.5)' }}>Shukriya! Main 24 hours mein reply karunga.</p>
@@ -218,7 +195,6 @@ export default function Contact() {
                   border:'1px solid rgba(0,200,150,0.35)',
                   borderRadius:'8px', color:'#00C896',
                   fontSize:'13px', cursor:'pointer',
-                  fontFamily:'DM Sans,sans-serif',
                 }}>Send Another</button>
               </div>
             ) : (
@@ -227,39 +203,29 @@ export default function Contact() {
                   Send a Message
                 </h3>
 
-                {/* Name */}
-                <div>
-                  <label style={{ fontSize:'12px', color:'rgba(240,248,245,0.4)', letterSpacing:'0.06em', textTransform:'uppercase', display:'block', marginBottom:'8px' }}>Your Name</label>
-                  <input
-                    className="contact-input"
-                    placeholder="Apna naam likho..."
-                    value={formData.name}
-                    onChange={e => setFormData({...formData, name: e.target.value})}
-                    style={{ width:'100%', padding:'14px 16px', background:'rgba(0,200,150,0.04)', border:'1px solid rgba(0,200,150,0.15)', borderRadius:'10px', color:'#F0F8F5', fontSize:'14px', outline:'none', fontFamily:'DM Sans,sans-serif' }}
-                  />
-                </div>
+                {[
+                  { label:'Your Name', key:'name', placeholder:'Apna naam likho...', type:'text' },
+                  { label:'Email Address', key:'email', placeholder:'tumhara@email.com', type:'email' },
+                ].map(field => (
+                  <div key={field.key}>
+                    <label style={{ fontSize:'12px', color:'rgba(240,248,245,0.4)', letterSpacing:'0.06em', textTransform:'uppercase', display:'block', marginBottom:'8px' }}>{field.label}</label>
+                    <input
+                      className="contact-input"
+                      type={field.type}
+                      placeholder={field.placeholder}
+                      value={formData[field.key as keyof typeof formData]}
+                      onChange={e => setFormData({...formData, [field.key]: e.target.value})}
+                    />
+                  </div>
+                ))}
 
-                {/* Email */}
-                <div>
-                  <label style={{ fontSize:'12px', color:'rgba(240,248,245,0.4)', letterSpacing:'0.06em', textTransform:'uppercase', display:'block', marginBottom:'8px' }}>Email Address</label>
-                  <input
-                    className="contact-input"
-                    placeholder="tumhara@email.com"
-                    type="email"
-                    value={formData.email}
-                    onChange={e => setFormData({...formData, email: e.target.value})}
-                    style={{ width:'100%', padding:'14px 16px', background:'rgba(0,200,150,0.04)', border:'1px solid rgba(0,200,150,0.15)', borderRadius:'10px', color:'#F0F8F5', fontSize:'14px', outline:'none', fontFamily:'DM Sans,sans-serif' }}
-                  />
-                </div>
-
-                {/* Service */}
                 <div>
                   <label style={{ fontSize:'12px', color:'rgba(240,248,245,0.4)', letterSpacing:'0.06em', textTransform:'uppercase', display:'block', marginBottom:'8px' }}>Service Chahiye</label>
                   <select
                     className="contact-input"
                     value={formData.service}
                     onChange={e => setFormData({...formData, service: e.target.value})}
-                    style={{ width:'100%', padding:'14px 16px', background:'#0C1217', border:'1px solid rgba(0,200,150,0.15)', borderRadius:'10px', color: formData.service ? '#F0F8F5' : 'rgba(240,248,245,0.25)', fontSize:'14px', outline:'none', fontFamily:'DM Sans,sans-serif' }}
+                    style={{ background:'#0C1217' }}
                   >
                     <option value="" disabled>Service select karo...</option>
                     <option value="web">Web Development</option>
@@ -272,7 +238,6 @@ export default function Contact() {
                   </select>
                 </div>
 
-                {/* Message */}
                 <div>
                   <label style={{ fontSize:'12px', color:'rgba(240,248,245,0.4)', letterSpacing:'0.06em', textTransform:'uppercase', display:'block', marginBottom:'8px' }}>Message</label>
                   <textarea
@@ -281,45 +246,23 @@ export default function Contact() {
                     rows={4}
                     value={formData.message}
                     onChange={e => setFormData({...formData, message: e.target.value})}
-                    style={{ width:'100%', padding:'14px 16px', background:'rgba(0,200,150,0.04)', border:'1px solid rgba(0,200,150,0.15)', borderRadius:'10px', color:'#F0F8F5', fontSize:'14px', outline:'none', fontFamily:'DM Sans,sans-serif', resize:'vertical' }}
+                    style={{ resize:'vertical' }}
                   />
                 </div>
 
-                {/* Submit */}
-                <button
-                  className="submit-btn"
-                  onClick={handleSubmit}
-                  style={{
-                    padding:'15px', background:'#00C896',
-                    border:'none', borderRadius:'10px',
-                    color:'#060A0D', fontFamily:'Syne,sans-serif',
-                    fontWeight:700, fontSize:'14px',
-                    cursor:'pointer', transition:'all 0.3s',
-                    letterSpacing:'0.02em',
-                  }}
-                >
+                <button className="submit-btn" onClick={handleSubmit} style={{
+                  padding:'15px', background:'#00C896',
+                  border:'none', borderRadius:'10px',
+                  color:'#060A0D', fontFamily:'Syne,sans-serif',
+                  fontWeight:700, fontSize:'14px',
+                  cursor:'pointer', transition:'all 0.3s',
+                }}>
                   Send Message ↗
                 </button>
               </div>
             )}
           </div>
         </div>
-
-        {/* Footer */}
-        <div style={{
-          borderTop:'1px solid rgba(0,200,150,0.12)',
-          paddingTop:'32px',
-          display:'flex', justifyContent:'space-between', alignItems:'center',
-        }}>
-          <div style={{ fontFamily:'Syne,sans-serif', fontWeight:700, fontSize:'15px', color:'#F0F8F5' }}>
-            Hash-1 Developers
-            <span style={{ display:'block', fontSize:'11px', color:'#00C896', fontWeight:400, letterSpacing:'0.08em', textTransform:'uppercase' }}>From Creativity to Code</span>
-          </div>
-          <div style={{ fontSize:'12px', color:'rgba(240,248,245,0.25)' }}>
-            © 2025 Hash-1 Developers. All rights reserved.
-          </div>
-        </div>
-
       </main>
     </>
   )
